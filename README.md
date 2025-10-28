@@ -216,3 +216,104 @@ bundle exec rspec
 
 ### Como enviar seu projeto
 Salve seu código em um versionador de código (GitHub, GitLab, Bitbucket) e nos envie o link publico. Se achar necessário, informe no README as instruções para execução ou qualquer outra informação relevante para correção/entendimento da sua solução.
+
+
+🧠 Minha Implementação — Desafio Técnico RD Station 2024
+
+Desenvolvido por Munick Nayara Freitas de Souza
+📍 Saskatoon – SK (Canadá)
+📧 [munick.freitas@hotmail.com](mailto:munick.freitas@hotmail.com)
+
+🌐 [github.com/municksouza](https://github.com/municksouza)
+
+Desenvolvido com foco em clareza, performance e escalabilidade — Desafio técnico RD Station 2024.
+
+🚀 Visão Geral
+
+Esta aplicação implementa uma API RESTful para gerenciamento completo de um carrinho de compras em e-commerce, garantindo integração entre produtos, carrinho e sessões de usuário.
+O projeto foi desenvolvido em Ruby on Rails 7.1, com PostgreSQL 16, Redis 7, Sidekiq + Sidekiq-Cron e suporte completo a Docker Compose.
+
+⚙️ Arquitetura e Design da Solução
+
+Rails API-only: estrutura enxuta e voltada à performance;
+
+Controllers limpos: toda a lógica de negócio é centralizada nos models;
+
+FactoryBot + RSpec: garantem isolamento e previsibilidade nos testes;
+
+Sidekiq-Cron Job: responsável por marcar carrinhos abandonados (3 h) e removê-los após 7 dias;
+
+ActiveRecord Transactions: consistência de dados ao adicionar ou remover itens;
+
+Enum status do carrinho (active, abandoned, expired) facilita consultas;
+
+Tratamento de erros e validações adicionais, impedindo quantidades negativas e carrinhos inválidos.
+
+🔍 Principais Funcionalidades
+
+| Recurso | Descrição |
+| --- | --- |
+| POST /cart | Cria o carrinho (caso não exista) e adiciona o produto. |
+| GET /cart | Retorna todos os produtos e o total do carrinho. |
+| POST /cart/add_item | Atualiza a quantidade de um produto já existente. |
+| DELETE /cart/:product_id | Remove um produto específico do carrinho. |
+| Sidekiq Job | Marca como “abandonado” (> 3 h) e remove (> 7 dias). |
+
+Todos os endpoints seguem os contratos do README oficial RD Station e foram testados via curl e RSpec.
+
+🧪 Testes e Qualidade de Código
+
+RSpec executa 32 exemplos, 0 falhas (✅ 100% passing).
+
+Testes de modelo: Cart, Product, CartItem.
+
+Testes de rota: validação completa dos endpoints REST.
+
+Testes de integração: garantem comportamento esperado da sessão do usuário.
+
+FactoryBot: usado no spec/support/factory_bot.rb para gerar dados limpos e reutilizáveis.
+
+Motivo dos suportes (test support): garantir que os helpers e as factories estejam carregados automaticamente, melhorando a velocidade e a organização dos testes.
+
+Performance: os testes foram otimizados para evitar excesso de criação de objetos e uso de banco em loop.
+Curl tests: confirmam que os endpoints seguem exatamente as respostas esperadas do desafio (original payload).
+
+🐳 Execução via Docker Compose
+docker-compose up --build
+
+O docker-compose.yml inclui os serviços:
+
+web → Rails API app
+
+db → PostgreSQL 16
+
+redis → Redis 7
+
+test → container para rodar RSpec
+
+🧭 Execução Local (padrão)
+bundle install
+bundle exec rails db:prepare
+bundle exec sidekiq
+bundle exec rails s
+bundle exec rspec
+
+🔐 Segurança e Boas Práticas
+
+Uso de variáveis de ambiente para credenciais sensíveis.
+
+Middleware de sessão segura (armazenamento de ID do carrinho via cookies).
+
+Validações de quantidade ≥ 1 em todos os endpoints.
+
+Proteção CSRF e configuração de headers seguindo as melhores práticas Rails.
+
+📈 Resultados e Conclusão
+
+O projeto atingiu todos os requisitos funcionais e técnicos solicitados:
+✅ 4 rotas principais implementadas
+✅ Job de limpeza automática com Sidekiq
+✅ Testes automatizados e suporte completo FactoryBot
+✅ Docker Compose operacional
+
+Foco principal: código legível, performático e fácil de manter, seguindo os princípios do time de Engenharia da RD Station.
