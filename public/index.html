@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8" />
+        <title>🛒 Demonstração do Carrinho RD Station</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="./styles/base.css" />
+        <link rel="stylesheet" href="./styles/components.css" />
+
+        <!-- Favicon opcional -->
+        <link rel="icon" href="./favicon.jpg" />
+    </head>
+
+    <body>
+        <header class="header">
+            <div class="logo">🛍️ <span>Demonstração do Carrinho</span></div>
+            <div class="cart-icon" id="cart-toggle">🛒 <span id="cart-count">0</span></div>
+        </header>
+
+        <main class="products-container">
+            <h1>Produtos</h1>
+            <div id="products-list" class="grid"></div>
+        </main>
+
+       <aside id="cart-panel" class="cart-panel">
+        <button id="back-home" class="back-btn" aria-label="Voltar para a página inicial">&larr; Voltar</button>
+        <h2>Seu Carrinho</h2>
+
+        <!-- Área rolável dos itens -->
+        <div class="cart-items-container">
+            <div id="cart-items"></div>
+        </div>
+
+        <!-- Rodapé fixo -->
+        <div class="cart-footer">
+            <div class="cart-total">
+            <strong>Total:</strong> R$ <span id="cart-total">0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkout-btn">Finalizar Compra</button>
+        </div>
+        </aside>
+
+    <footer>
+        <p>Desenvolvido com 💜 por <strong>Munick Souza</strong> — Desafio RD Station 2024</p>
+    </footer>
+
+        <!-- Script do bundle gerado pelo esbuild -->
+        <script type="module" src="/demo/dist/bundle.js"></script>
+        <script type="module" src="/demo/js/cart_panel.js"></script>
+    </body>
+</html>

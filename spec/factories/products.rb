@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :product do
-    name  { "Produto X" }
-    price { 7.0 }
+    name { "Produto #{SecureRandom.hex(3)}" }
+    price { 9.99 }
   end
 end
