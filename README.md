@@ -336,9 +336,11 @@ O GIF abaixo mostra o fluxo completo — criação, listagem e remoção de prod
 
 ## 🎨 Demonstração Completa (API + Frontend)
 
-### 🎥 Vídeo de Demonstração
+![Demonstração do Carrinho (GIF)]
 
-<video src="demo_cart.mp4" width="700" controls autoplay loop muted></video>
+<p align="center"> <img src="./demo_cart.frontend.gif" alt="Demonstração via cURL" width="800"> </p>
+
+🎥 [Clique aqui para assistir ao vídeo completo (demo_cart.mp4)](./demo_cart.mp4)
 
 Localizado em **`/public/demo`**, o frontend conecta-se à API e simula uma experiência real de loja online.
 
@@ -468,8 +470,12 @@ The GIF below demonstrates the full flow — creating, listing, and removing pro
 
 <p align="center"> <img src="demo_cart.gif" alt="Demonstração via cURL" width="800"> </p>
 
-🎥 Demo Video
-<video src="demo_cart.mp4" width="700" controls autoplay loop muted></video>
+### 🎨 Full Demonstration (API + Frontend)
+
+![Cart Demonstration (GIF)]
+<p align="center"> <img src="./demo_cart.frontend.gif" alt="Demonstração via cURL" width="800"> </p>
+
+🎥 [Click here to watch the full video (demo_cart.mp4)](./demo_cart.mp4)
 
 Demonstration using curl, persistent session cookies, and live Sidekiq job execution, alongside a responsive frontend simulation.
 
