@@ -1,16 +1,25 @@
 require "sidekiq"
+require "yaml"
+
 begin
   require "sidekiq/cron/job"
 rescue LoadError
-  Rails.logger.warn("sidekiq-cron não instalado; ignorando cron")
+  Rails.logger.warn("⚠️ sidekiq-cron não instalado; ignorando cron jobs")
 end
 
 Sidekiq.configure_server do |config|
   config.redis = { url: ENV.fetch("REDIS_URL", "redis://localhost:6379/0") }
-  path = Rails.root.join("config/sidekiq.yml")
-  if defined?(Sidekiq::Cron::Job) && File.exist?(path)
-    raw = YAML.load_file(path)
-    Sidekiq::Cron::Job.load_from_hash raw["schedule"] if raw.is_a?(Hash) && raw["schedule"].is_a?(Hash)
+
+  schedule_file = Rails.root.join("config", "sidekiq.yml")
+
+  if File.exist?(schedule_file) && defined?(Sidekiq::Cron::Job)
+    schedule = YAML.load_file(schedule_file)
+    if schedule && schedule["schedule"]
+      Sidekiq::Cron::Job.load_from_hash(schedule["schedule"])
+      Rails.logger.info("✅ Cron carregado do sidekiq.yml com sucesso.")
+    else
+      Rails.logger.warn("⚠️ Nenhum cron encontrado no sidekiq.yml")
+    end
   end
 end
 

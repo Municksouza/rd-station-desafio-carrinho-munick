@@ -1,0 +1,145 @@
+# The configurations that used for the recording, feel free to edit them
+config:
+
+  # Specify a command to be executed
+  # like `/bin/bash -l`, `ls`, or any other commands
+  # the default is bash for Linux
+  # or powershell.exe for Windows
+  command: bash -l
+  
+  # Specify the current working directory path
+  # the default is the current working directory path
+  cwd: /Users/munickfsouza/Desktop/tech-interview-backend-entry-level-main
+  
+  # Export additional ENV variables
+  env:
+    recording: true
+  
+  # Explicitly set the number of columns
+  # or use `auto` to take the current
+  # number of columns of your shell
+  cols: 165
+  
+  # Explicitly set the number of rows
+  # or use `auto` to take the current
+  # number of rows of your shell
+  rows: 47
+  
+  # Amount of times to repeat GIF
+  # If value is -1, play once
+  # If value is 0, loop indefinitely
+  # If value is a positive number, loop n times
+  repeat: 0
+  
+  # Quality
+  # 1 - 100
+  quality: 100
+  
+  # Delay between frames in ms
+  # If the value is `auto` use the actual recording delays
+  frameDelay: auto
+  
+  # Maximum delay between frames in ms
+  # Ignored if the `frameDelay` isn't set to `auto`
+  # Set to `auto` to prevent limiting the max idle time
+  maxIdleTime: 2000
+  
+  # The surrounding frame box
+  # The `type` can be null, window, floating, or solid`
+  # To hide the title use the value null
+  # Don't forget to add a backgroundColor style with a null as type
+  frameBox:
+    type: floating
+    title: Terminalizer
+    style:
+      border: 0px black solid
+      # boxShadow: none
+      # margin: 0px
+  
+  # Add a watermark image to the rendered gif
+  # You need to specify an absolute path for
+  # the image on your machine or a URL, and you can also
+  # add your own CSS styles
+  watermark:
+    imagePath: null
+    style:
+      position: absolute
+      right: 15px
+      bottom: 15px
+      width: 100px
+      opacity: 0.9
+  
+  # Cursor style can be one of
+  # `block`, `underline`, or `bar`
+  cursorStyle: block
+  
+  # Font family
+  # You can use any font that is installed on your machine
+  # in CSS-like syntax
+  fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+  
+  # The size of the font
+  fontSize: 12
+  
+  # The height of lines
+  lineHeight: 1
+  
+  # The spacing between letters
+  letterSpacing: 0
+  
+  # Theme
+  theme:
+    background: "transparent"
+    foreground: "#afafaf"
+    cursor: "#c7c7c7"
+    black: "#232628"
+    red: "#fc4384"
+    green: "#b3e33b"
+    yellow: "#ffa727"
+    blue: "#75dff2"
+    magenta: "#ae89fe"
+    cyan: "#708387"
+    white: "#d5d5d0"
+    brightBlack: "#626566"
+    brightRed: "#ff7fac"
+    brightGreen: "#c8ed71"
+    brightYellow: "#ebdf86"
+    brightBlue: "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan: "#b1c6ca"
+    brightWhite: "#f9f9f4"
+  
+# Records, feel free to edit them
+records:
+  - delay: 228
+    content: "Restored session: Mon Nov  3 14:54:34 CST 2025\r\n\r\nThe default interactive shell is now zsh.\r\nTo update your account to use zsh, please run `chsh -s /bin/zsh`.\r\nFor more details, please visit https://support.apple.com/kb/HT208050.\r\n\e]7;file://Municks-MacBook-Pro.local/Users/munickfsouza/Desktop/tech-interview-backend-entry-level-main\a\e[?1034hMunicks-MacBook-Pro:tech-interview-backend-entry-level-main munickfsouza$ "
+  - delay: 5975
+    content: "curl -X POST http://localhost:3000/api/cart/add_item \\\r\n>   -H \"Content-Type: application/json\" \\\r\n>   -d '{\"product_id\": 1, \"quantity\": 2}' \\\r\n>   -c cookies.txt"
+  - delay: 1261
+    content: "\r\n"
+  - delay: 34
+    content: "{\"products\":[{\"id\":1,\"name\":\"Samsung Galaxy S24 Ultra\",\"quantity\":2,\"unit_price\":\"12999.99\",\"total_price\":\"25999.98\"}],\"total_price\":\"25999.98\"}\e]7;file://Municks-MacBook-Pro.local/Users/munickfsouza/Desktop/tech-interview-backend-entry-level-main\aMunicks-MacBook-Pro:tech-interview-backend-entry-level-main munickfsouza$ "
+  - delay: 3974
+    content: "\r\n\e]7;file://Municks-MacBook-Pro.local/Users/munickfsouza/Desktop/tech-interview-backend-entry-level-main\aMunicks-MacBook-Pro:tech-interview-backend-entry-level-main munickfsouza$ "
+  - delay: 1449
+    content: "curl -X GET http://localhost:3000/api/cart -b cookies.txt\r\n"
+  - delay: 30
+    content: "{\"products\":[{\"id\":1,\"name\":\"Samsung Galaxy S24 Ultra\",\"quantity\":2,\"unit_price\":\"12999.99\",\"total_price\":25999.98}],\"total_price\":25999.98}\e]7;file://Municks-MacBook-Pro.local/Users/munickfsouza/Desktop/tech-interview-backend-entry-level-main\aMunicks-MacBook-Pro:tech-interview-backend-entry-level-main munickfsouza$ "
+  - delay: 1084
+    content: "\r\n\e]7;file://Municks-MacBook-Pro.local/Users/munickfsouza/Desktop/tech-interview-backend-entry-level-main\aMunicks-MacBook-Pro:tech-interview-backend-entry-level-main munickfsouza$ "
+  - delay: 4151
+    content: "curl -X DELETE http://localhost:3000/api/cart/1 -b cookies.txt\r\n"
+  - delay: 28
+    content: "{\"products\":[],\"total_price\":0}\e]7;file://Municks-MacBook-Pro.local/Users/munickfsouza/Desktop/tech-interview-backend-entry-level-main\aMunicks-MacBook-Pro:tech-interview-backend-entry-level-main munickfsouza$ "
+  - delay: 922
+    content: "\r\n\e]7;file://Municks-MacBook-Pro.local/Users/munickfsouza/Desktop/tech-interview-backend-entry-level-main\aMunicks-MacBook-Pro:tech-interview-backend-entry-level-main munickfsouza$ "
+  - delay: 5336
+    content: "bundle exec sidekiq\r\n"
+  - delay: 67
+    content: "/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/2.6.0/rubygems.rb:283:in `find_spec_for_exe': \e[1mCould not find 'bundler' (2.7.2) required by your /Users/munickfsouza/Desktop/tech-interview-backend-entry-level-main/Gemfile.lock. (\e[1;4mGem::GemNotFoundException\e[m\e[1m)\e[m\r\n\e[1mTo update to the latest version installed on your system, run `bundle update --bundler`.\e[m\r\n\e[1mTo install the missing version, run `gem install bundler:2.7.2`\e[m\r\n\tfrom /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/2.6.0/rubygems.rb:302:in `activate_bin_path'\r\n\tfrom /usr/bin/bundle:23:in `<main>'\r\n\e]7;file://Municks-MacBook-Pro.local/Users/munickfsouza/Desktop/tech-interview-backend-entry-level-main\aMunicks-MacBook-Pro:tech-interview-backend-entry-level-main munickfsouza$ "
+  - delay: 6125
+    content: "logout\r\n\r\nSaving session..."
+  - delay: 14
+    content: "\r\n...saving history..."
+  - delay: 7
+    content: "truncating history files...\r\n...completed.\r\n"

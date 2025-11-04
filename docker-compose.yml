@@ -3,6 +3,7 @@ version: "3.9"
 services:
   db:
     image: postgres:16-alpine
+    container_name: store_db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
@@ -19,6 +20,7 @@ services:
 
   redis:
     image: redis:7.0.15-alpine
+    container_name: store_redis
     command: ["redis-server", "--appendonly", "yes"]
     ports:
       - "6379:6379"
@@ -32,10 +34,11 @@ services:
 
   web:
     build: .
+    container_name: store_web
     command: bash -lc "bundle exec rails db:prepare && bundle exec rails s -b 0.0.0.0 -p 3000"
     environment:
       DATABASE_URL: postgres://postgres:password@db:5432/store_development
-      REDIS_URL: redis://redis:6379/1
+      REDIS_URL: redis://redis:6379/0
       RAILS_ENV: development
     volumes:
       - .:/app
@@ -47,12 +50,13 @@ services:
       redis:
         condition: service_healthy
 
-  worker:
+  sidekiq:
     build: .
-    command: bash -lc "bundle exec sidekiq"
+    container_name: store_sidekiq
+    command: bash -lc "bundle exec sidekiq -C config/sidekiq.yml"
     environment:
       DATABASE_URL: postgres://postgres:password@db:5432/store_development
-      REDIS_URL: redis://redis:6379/1
+      REDIS_URL: redis://redis:6379/0
       RAILS_ENV: development
     volumes:
       - .:/app
@@ -64,6 +68,7 @@ services:
 
   test:
     build: .
+    container_name: store_test
     command: bash -lc "bundle exec rails db:prepare RAILS_ENV=test && bundle exec rspec"
     environment:
       DATABASE_URL: postgres://postgres:password@db:5432/store_test
