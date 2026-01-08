@@ -1,8 +1,11 @@
 🧠 Desafio Técnico RD Station
+
 🛒 Carrinho de Compras (2024)
 
 Autora: Munick Nayara Freitas de Souza
+
 📍 Saskatoon – SK, Canadá
+
 🌐 https://github.com/municksouza
 
 🎯 Visão Geral
