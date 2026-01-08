@@ -57,16 +57,31 @@ export async function renderCart() {
 }
 
 // Funções auxiliares
-async function handleQuantityChange(item, change) {
-  const newQty = item.quantity + change;
-  if (newQty < 1) return; // evita zero ou negativo
-  await API.updateCartItem(item.id, change);
-  await renderCart();
+
+/**
+ * Atualiza a quantidade de um item no carrinho.
+ * @param {Object} item - Item do carrinho (contém id, quantity, etc.)
+ * @param {number} delta - Quantidade a adicionar/subtrair (ex: +1 ou -1)
+ */
+async function handleQuantityChange(item, delta) {
+  try {
+    // O backend agora aceita valores negativos e remove automaticamente se quantidade <= 0
+    await API.updateCartItem(item.id, delta);
+    await renderCart();
+  } catch (error) {
+    console.error('Erro ao atualizar quantidade:', error);
+    alert('Erro ao atualizar quantidade do item. Tente novamente.');
+  }
 }
 
 async function handleRemoveItem(productId) {
-  await API.removeFromCart(productId);
-  await renderCart();
+  try {
+    await API.removeFromCart(productId);
+    await renderCart();
+  } catch (error) {
+    console.error('Erro ao remover item:', error);
+    alert('Erro ao remover item. Tente novamente.');
+  }
 }
 
 /**

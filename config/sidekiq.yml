@@ -1,6 +1,7 @@
 :concurrency: 3
 :timeout: 60
 :verbose: true
+
 :queues:
   - critical
   - default
@@ -10,5 +11,6 @@
 
 :schedule:
   mark_carts_as_abandoned_job:
-    cron: "*/30 * * * *" 
+    cron: "*/30 * * * *"
     class: "MarkCartAsAbandonedJob"
+    queue: default
