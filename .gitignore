@@ -31,3 +31,9 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Arquivos locais de teste (cURL / sessão)
+cookies.txt
+
+# Build do frontend demo (gerado via esbuild)
+public/demo/dist/

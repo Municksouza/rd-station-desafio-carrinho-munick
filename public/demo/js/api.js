@@ -17,32 +17,38 @@ export const API = {
    * Lida com erros e converte a resposta para JSON automaticamente.
    */
   async request(url, options = {}) {
+    const token = document
+      .querySelector('meta[name="csrf-token"]')
+      ?.getAttribute('content');
+  
     const config = {
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'same-origin', // mantém cookies de sessão
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token ? { 'X-CSRF-Token': token } : {}),
+      },
+      credentials: 'same-origin',
       ...options,
     };
-
-    try {
-      const response = await fetch(url, config);
-
-      // Lida com erros HTTP
-      if (!response.ok) {
-        const message = `Erro ${response.status}: ${response.statusText}`;
-        console.error(`❌ [API Error] ${message}`);
-        throw new Error(message);
+  
+    const response = await fetch(url, config);
+  
+    // Tratamento de erros com mensagens do servidor
+    if (!response.ok) {
+      let errorMessage = response.statusText;
+      try {
+        const errorData = await response.json();
+        errorMessage = errorData.error || errorData.message || errorMessage;
+      } catch {
+        // Se não conseguir parsear JSON, tenta texto
+        const text = await response.text().catch(() => '');
+        if (text) errorMessage = text;
       }
-
-      // Retorna o JSON parseado (ou objeto vazio se falhar)
-      const data = await response.json().catch(() => ({}));
-      return data;
-
-    } catch (error) {
-      console.error("🚨 Falha na requisição:", error);
-      alert("⚠️ Erro ao se comunicar com o servidor. Tente novamente.");
-      return { products: [], total_price: 0 };
+      console.error(`❌ [API Error] ${response.status}:`, errorMessage);
+      throw new Error(`Erro ${response.status}: ${errorMessage}`);
     }
-  },
+    
+    return response.json().catch(() => ({}));
+  },  
 
   // === Produtos ===
 
@@ -93,10 +99,10 @@ addToCart(productId, quantity = 1) {
  * @param {number} quantity - Quantidade adicional.
  * @returns {Promise<Object>} Carrinho atualizado.
  */
- updateCartItem(productId, quantityChange) {
+  updateCartItem(productId, quantityDelta = 1) {
     return this.request('/api/cart/add_item', {
       method: 'POST',
-      body: JSON.stringify({ product_id: productId, quantity: quantityChange }),
+      body: JSON.stringify({ product_id: productId, quantity: quantityDelta }),
     });
   },
 
